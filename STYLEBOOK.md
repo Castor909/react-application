@@ -3,14 +3,14 @@
 This minimal stylebook defines the color palette, typography, and basic spacing used in the React Club app.
 
 ## Color palette
-- Primary: #1e88e5 (blue)
-- Secondary: #ff7043 (orange)
-- Background: #ffffff (white)
-- Surface / Card: #f7f9fc (light gray)
-- Text primary: #0f1724 (dark)
-- Text secondary: #586069 (muted)
-- Success: #2e7d32 (green)
-- Error: #c62828 (red)
+- Primary (brand teal): #0F766E
+- CTA / Accent (warm coral): #FF6B4A
+- Background (deep charcoal): #0B1220
+- Surface / Card (dark slate): #0F1724
+- Text primary (light): #E6EEF8
+- Text secondary (muted): #97A3B3
+- Success: #2ECC71
+- Error: #FF4D4F
 
 ## Typography
 - Font family: system stack ("Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif)
