@@ -107,12 +107,3 @@ The project will be evaluated across the following categories (points shown per 
 - **Code quality and best practices:** 10 — readable, modular components, semantic HTML, and styling conventions.
 - **Extra credit: Dockerization:** 10 — working multi-stage `Dockerfile` and optional `docker-compose.yml` to serve the built frontend.
 
----
-
-If you want, I can also:
-
-- produce the component hierarchy diagram in text or simple ASCII/tree form,
-- create a starter `Dockerfile` and `docker-compose.yml` in a `docker/` folder, or
-- convert this file into a shorter checklist tailored to your repo structure.
-
-Please tell me which of the optional extras you'd like me to do next.
