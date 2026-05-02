@@ -56,7 +56,13 @@
 - `CoachDetailPage`
   - Fetches one coach with `useFetch('/people/coaches/:publicId')`.
   - Uses `refetch` for retry after errors.
+  - Owns edit mode state and toggles between view and edit UI.
   - Renders a detail card with normalized fields and raw debug data.
+- `CoachEditForm`
+  - Controlled form for coach profile editing (email, phone, speciality, address).
+  - Receives `coach`, `onSubmit`, `onCancel`, `error`, `isSubmitting`.
+  - Performs client-side validation before submission.
+  - Sends PATCH request to `/people/coaches/:publicId`.
 
 ## Venues feature components
 
@@ -69,7 +75,14 @@
 - `VenueDetailPage`
   - Fetches one venue with `useFetch('/inventory/venues/:publicId')`.
   - Uses `refetch` for retry after errors.
+  - Owns note deletion state and handlers.
   - Renders a detail card with normalized fields and raw debug data.
+  - Renders `VenueNotesList` for managing notes with DELETE capability.
+- `VenueNotesList`
+  - Displays list of notes for a venue.
+  - Handles delete confirmation UI and triggers DELETE requests.
+  - Receives `notes`, `onDeleteNote`, `deletingNoteId`, `error`.
+  - Sends DELETE request to `/inventory/venues/:publicId/notes/:noteId`.
 
 ## Shared data and utility layers
 
@@ -81,16 +94,33 @@
 - Data files used by the temporary local flows
   - `classes.json`
   - `issues.json`
-  - `validDnis.json`
-
-## Mutation and feedback ownership
-
-- Booking flow
-  - Trigger: `ClassCard` -> `ClassList` -> `MainLayout`
-  - Input: `DniForm`
-  - Outcome: local booking state update, confirmation modal, optional POST attempt through `requestApi()`
+  - Method: `POST` to `/classes/bookings`
+  - Outcome: local booking state update, confirmation modal, optional API response
 - Issue flow
   - Trigger: `ReportIssueButton` -> `MainLayout`
+  - Input: `DniForm` -> `IssueForm`
+  - Method: `POST` to `/issues`
+  - Outcome: local issue creation, confirmation modal, optional API response
+- Coach profile update flow
+  - Trigger: `CoachDetailPage` "Edit Profile" button
+  - Input: `CoachEditForm` (email, phone, speciality, address)
+  - Method: `PATCH` to `/people/coaches/:publicId`
+  - Outcome: refetch coach data, confirmation feedback, return to view mode
+- Venue note deletion flow
+  - Trigger: `VenueNotesList` delete button
+  - Input: confirmation dialog + note ID
+  - Method: `DELETE` to `/inventory/venues/:publicId/notes/:noteId`
+  - Outcome: refetch venue data, remove note from UI, confirmation feedback
+- Feedback components
+  - Loading: page-level text in `CoachesPage`, `VenuesPage`, `CoachDetailPage`, `VenueDetailPage`
+  - Success: `Confirmation` for booking/issue creation
+  All six user stories are now represented in the component hierarchy.
+- HTTP verb coverage: `GET` (Stories 3, 4), `POST` (Stories 1, 2), `PATCH` (Story 5), `DELETE` (Story 6).
+- Authentication/authorization is handled via DNI validation with role-based access (admin/staff/member roles stored in validDnis.json).
+- Inline editing for coaches provides a smooth user experience without navigation.
+- Note deletion for venues includes confirmation prompts to prevent accidental data loss.
+- All mutation flows include loading, success, and error states.
+- The component structure remains modular and reusable, with clear separation between presentation and log
   - Input: `DniForm` -> `IssueForm`
   - Outcome: local issue creation, confirmation modal, optional POST attempt through `requestApi()`
 - Feedback components

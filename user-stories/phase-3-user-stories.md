@@ -38,8 +38,8 @@ This is the working source of truth for the six stories required in Phase 3. It 
   - Load the list of coaches.
   - Open one coach detail page.
   - Show loading and retry behavior if the fetch fails.
-- Mutation type: `GET`
-- UI feedback: loading text, retryable error state.
+- Mutation type: `GET` (read) with added `PATCH` and `DELETE` for inline edit and removal
+- UI feedback: loading text, retryable error state, inline edit form with validation, disabled submit button while saving, and delete confirmation with loading/success/error states.
 
 ## Story 4: Browse venues
 
@@ -50,8 +50,8 @@ This is the working source of truth for the six stories required in Phase 3. It 
   - Load the list of venues.
   - Open one venue detail page.
   - Show loading and retry behavior if the fetch fails.
-- Mutation type: `GET`
-- UI feedback: loading text, retryable error state.
+- Mutation type: `GET` (read) with added `PATCH` for editing venue details and `DELETE` for notes
+- UI feedback: loading text, retryable error state, inline edit form for venue details with validation, and confirmation prompt + loading state for note deletion.
 
 ## Story 5: Update a coach profile
 
