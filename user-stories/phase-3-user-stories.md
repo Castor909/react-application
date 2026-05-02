@@ -56,27 +56,27 @@ This is the working source of truth for the six stories required in Phase 3. It 
 ## Story 5: Update a coach profile
 
 - File: `user-story-update-coach-profile.jpg`
-- Goal: As an admin, I want to edit a coach profile so that the directory stays current.
+- Goal: As an admin, I want to update a coach profile so that the directory stays current.
 - Core flow:
   - Open a coach detail view.
   - Start an edit action from the profile.
-  - Modify fields such as contact info, speciality, or address.
+  - Modify fields such as first name, last name, email, phone, date of birth, address public ID, or certification.
   - Submit the update.
   - Show loading state while saving.
   - Show success confirmation and return to the updated detail view.
 - Mutation type: `PUT` or `PATCH`
 - UI feedback: validation warnings, disabled submit button, success confirmation, API error message.
 
-## Story 6: Delete an outdated venue note
+## Story 6: Delete a venue
 
-- File: `user-story-delete-venue-note.jpg`
-- Goal: As an admin, I want to delete an outdated venue note so that stale information is removed.
+- File: `user-story-delete-venue.jpg`
+- Goal: As an admin, I want to delete a venue so that obsolete facility records are removed.
 - Core flow:
-  - Open a venue detail view or a notes management panel.
-  - Choose an outdated note.
+  - Open a venue detail view.
+  - Choose the delete action for the venue.
   - Confirm the deletion.
   - Show loading state while deleting.
-  - Show success confirmation and remove the note from the UI.
+  - Show success confirmation and return to the venue list.
 - Mutation type: `DELETE`
 - UI feedback: confirmation prompt, loading state, success confirmation, API error message.
 

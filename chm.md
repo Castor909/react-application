@@ -59,7 +59,7 @@
   - Owns edit mode state and toggles between view and edit UI.
   - Renders a detail card with normalized fields and raw debug data.
 - `CoachEditForm`
-  - Controlled form for coach profile editing (email, phone, speciality, address).
+  - Controlled form for coach profile editing (first name, last name, email, phone, date of birth, address public ID, certification).
   - Receives `coach`, `onSubmit`, `onCancel`, `error`, `isSubmitting`.
   - Performs client-side validation before submission.
   - Sends PATCH request to `/people/coaches/:publicId`.
@@ -75,14 +75,11 @@
 - `VenueDetailPage`
   - Fetches one venue with `useFetch('/inventory/venues/:publicId')`.
   - Uses `refetch` for retry after errors.
-  - Owns note deletion state and handlers.
+  - Owns edit mode state, delete confirmation state, and handlers.
   - Renders a detail card with normalized fields and raw debug data.
-  - Renders `VenueNotesList` for managing notes with DELETE capability.
+  - Renders `VenueEditForm` for updating venue fields.
 - `VenueNotesList`
-  - Displays list of notes for a venue.
-  - Handles delete confirmation UI and triggers DELETE requests.
-  - Receives `notes`, `onDeleteNote`, `deletingNoteId`, `error`.
-  - Sends DELETE request to `/inventory/venues/:publicId/notes/:noteId`.
+  - Not used by the current backend-aligned story set.
 
 ## Shared data and utility layers
 
@@ -103,14 +100,14 @@
   - Outcome: local issue creation, confirmation modal, optional API response
 - Coach profile update flow
   - Trigger: `CoachDetailPage` "Edit Profile" button
-  - Input: `CoachEditForm` (email, phone, speciality, address)
+  - Input: `CoachEditForm` (first name, last name, email, phone, date of birth, address public ID, certification)
   - Method: `PATCH` to `/people/coaches/:publicId`
   - Outcome: refetch coach data, confirmation feedback, return to view mode
-- Venue note deletion flow
-  - Trigger: `VenueNotesList` delete button
-  - Input: confirmation dialog + note ID
-  - Method: `DELETE` to `/inventory/venues/:publicId/notes/:noteId`
-  - Outcome: refetch venue data, remove note from UI, confirmation feedback
+- Venue deletion flow
+  - Trigger: `VenueDetailPage` "Delete Venue" button
+  - Input: confirmation dialog + venue public ID
+  - Method: `DELETE` to `/inventory/venues/:publicId`
+  - Outcome: navigate back to venue list, confirmation feedback
 - Feedback components
   - Loading: page-level text in `CoachesPage`, `VenuesPage`, `CoachDetailPage`, `VenueDetailPage`
   - Success: `Confirmation` for booking/issue creation
@@ -118,7 +115,7 @@
 - HTTP verb coverage: `GET` (Stories 3, 4), `POST` (Stories 1, 2), `PATCH` (Story 5), `DELETE` (Story 6).
 - Authentication/authorization is handled via DNI validation with role-based access (admin/staff/member roles stored in validDnis.json).
 - Inline editing for coaches provides a smooth user experience without navigation.
-- Note deletion for venues includes confirmation prompts to prevent accidental data loss.
+- Venue deletion includes confirmation prompts to prevent accidental data loss.
 - All mutation flows include loading, success, and error states.
 - The component structure remains modular and reusable, with clear separation between presentation and log
   - Input: `DniForm` -> `IssueForm`
