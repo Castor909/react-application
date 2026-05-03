@@ -41,11 +41,11 @@ graph TD
     
     style A fill:#4a90e2
     style B fill:#50c878
-    style E1 fill:#f5a623
-    style E2 fill:#f5a623
-    style E3 fill:#f5a623
-    style E4 fill:#f5a623
-    style E5 fill:#f5a623
+    style E1 fill:#d97706
+    style E2 fill:#d97706
+    style E3 fill:#d97706
+    style E4 fill:#d97706
+    style E5 fill:#d97706
     style H fill:#d0021b
     style L fill:#d0021b
     style Q fill:#d0021b
