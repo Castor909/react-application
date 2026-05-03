@@ -1,5 +1,65 @@
 # Phase 3 Component Hierarchy Map
 
+## Visual Hierarchy
+
+```mermaid
+graph TD
+    A["App.jsx"] --> B["MainLayout"]
+    
+    B --> C["Header"]
+    B --> D["Footer"]
+    B --> E["Router<br/>Routes"]
+    
+    E --> E1["CoachesPage<br/>GET /people/coaches"]
+    E --> E2["CoachDetailPage<br/>GET/PATCH/DELETE coach"]
+    E --> E3["VenuesPage<br/>GET /inventory/venues"]
+    E --> E4["VenueDetailPage<br/>GET/PATCH/DELETE venue"]
+    E --> E5["Home<br/>Book & Report Flows"]
+    
+    E1 --> F["CoachList"]
+    F --> G["CoachCard"]
+    
+    E2 --> H["CoachEditForm<br/>PATCH flow"]
+    E2 --> I["Confirmation"]
+    
+    E3 --> J["VenueList"]
+    J --> K["VenueCard"]
+    
+    E4 --> L["VenueEditForm<br/>PATCH flow"]
+    E4 --> M["Confirmation"]
+    
+    E5 --> N["ClassList"]
+    N --> O["ClassCard"]
+    E5 --> P["ReportIssueButton"]
+    P --> Q["IssueForm<br/>POST flow"]
+    
+    E5 --> R["Modal<br/>Booking/Report"]
+    R --> S["DniForm"]
+    
+    B --> T["ErrorMessage<br/>Error states"]
+    B --> U["useFetch hook<br/>GET/retry logic"]
+    
+    style A fill:#4a90e2
+    style B fill:#50c878
+    style E1 fill:#f5a623
+    style E2 fill:#f5a623
+    style E3 fill:#f5a623
+    style E4 fill:#f5a623
+    style E5 fill:#f5a623
+    style H fill:#d0021b
+    style L fill:#d0021b
+    style Q fill:#d0021b
+    style T fill:#bd10e0
+    style U fill:#bd10e0
+```
+
+**Color Legend:**
+- **Blue**: Root component (App)
+- **Green**: Layout wrapper (MainLayout)
+- **Orange**: Page components (read/detail flows)
+- **Red**: Mutation forms (PATCH/DELETE/POST)
+- **Purple**: Shared utilities (error handling, fetch hooks)
+
 ## Route and layout structure
 
 - `App`
